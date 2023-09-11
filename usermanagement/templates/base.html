@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <link rel="stylesheet" href="style.css" />
+    <title>{% block title %}Ldap Manager{% endblock %}</title>
+    {% endblock %}
+</head>
+<body>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+        {% block footer %}
+        &copy; Opensource Project 2022 <a href="email:erikakaiser@mailbox.org">@notrickperson</a>.
+        {% endblock %}
+    </div>
+</body>
+</html>

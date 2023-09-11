@@ -1,0 +1,27 @@
+{% extends "bootstrap/base.html" %} {% import "bootstrap/wtf.html" as wtf %} {%
+block title %} Login {% endblock %} {% block styles %} {{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}" />
+{% endblock %} {% block content %}
+<div class="container">
+  <form class="form-signin" method="POST" action="/login">
+    <label id="companyname">BOLD VENTURES</label></br>
+    <label>Ldap Usermanagement</label></br>
+    <h4 class="form-signin-heading">Please sign in</h4>
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+      <p>{{ error }}</p>
+    </div>
+    {% endif %}
+    <div class="content">
+      <input type="text" class="input-lg form-control" placeholder="Username" name="username"
+        value="{{request.form.username}}">
+      <input type="password" class="input-lg form-control" placeholder="Password" name="password"
+        value="{{request.form.password}}">
+      <!--<a href='/password_reset'>Forgot password?</a> -->
+      <button id="login-button" class="btn btn-lg btn-primary btn-block" type="submit">
+        Sign in
+      </button>
+  </form>
+</div>
+<!-- /container -->
+{% endblock %}

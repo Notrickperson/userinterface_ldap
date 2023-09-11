@@ -1,0 +1,70 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+
+<link rel="stylesheet" href="{{url_for('.static', filename='home.css')}}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson }};
+</script>
+<script type="text/javascript">
+    window.setTimeout(function () {
+        $('#flash').delay(2000).fadeOut(300);
+    }, 3000);
+
+</script>
+{% endblock %}
+
+
+{% block content %}
+<nav class=" navbar-dark bg-dark navbar">
+    <p class="navbar-brand" href="#">LDAP Manager</p>
+    <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout">Log Out</a></li>
+        </ul>
+    </div>
+</nav>
+
+{% if data %}
+<div class="container">
+    <h2 id="hello">Welcome Admin!</h2>
+    <label class="sub-header">All Users</label>
+    </br>
+    <form method="POST" id="usersForm" action="/">
+        {% for entry in data %}
+        <button class="button" name="userbutton" value="{{entry}}">{{entry}}</button>
+        {% endfor %}
+    </form>
+
+    {% if userdata %}
+    <h3>{{userdata['cn']}}</h3>
+    <div id="newtable">
+        <div class="table-responsive">
+            <table class="table table table-hover table-bordered">
+                <thead class="thead">
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for v,k in userdata.items() %}
+                    <tr>
+                        <td id="{{v}}">{{v}}</td>
+                        <td id=" {{k}}">{{k}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+    </div>
+    {% endif %}
+{% endblock %}

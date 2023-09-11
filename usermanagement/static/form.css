@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Baloo Chettan 2", cursive;
+}
+
+img {
+  margin-top: 50px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+  background-color: whitesmoke;
+}
+a {
+  color: white;
+}
+
+.wrapper {
+  display: flex;
+  position: relative;
+}
+
+.wrapper .sidebar {
+  position: fixed;
+  width: 270px;
+  height: 100%;
+  padding: 30px 0px;
+  background: rgb(34, 34, 34);
+  color: white;
+}
+
+.wrapper .sidebar h1 {
+  margin-top: 50px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 27px;
+}
+
+.wrapper .sidebar h2 {
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.wrapper .sidebar label {
+  text-align: center;
+  padding-left: 35px;
+  font-size: 15px;
+}
+
+.wrapper .sidebar ul li {
+  padding: 15px;
+  padding-left: 30px;
+  /*border-bottom: 1px solid rgba(0, 0, 0, 0.05);*/
+  /*border-top: 1px solid rgba(255, 255, 255, 0.05);*/
+}
+.wrapper .sidebar ul li a {
+  display: block;
+}
+
+.wrapper .sidebar ul li a .fas {
+  width: 25px;
+}
+.wrapper .sidebar ul li a .far {
+  width: 25px;
+}
+.wrapper .sidebar ul li:hover {
+  background: rgb(46, 46, 46);
+}
+
+.wrapper .sidebar ul li:hover a {
+  color: white;
+}
+
+.wrapper .container {
+  width: 100%;
+  margin-left: 270px;
+  padding-left: 50px;
+  padding-top: 50px;
+  color: rgb(32, 32, 32);
+}
+
+.wrapper .container .content h3 {
+text-align: center;
+}
+.wrapper .container .content {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+  width: 90%;
+  box-shadow: 4px 4px 4px #1a1a1a11;
+  -webkit-box-shadow: 4px 4px 4px #1a1a1a11;
+  -moz-box-shadow: 4px 4px 4px #1a1a1a11;
+  border-radius: 7px;
+}
+
+.wrapper .container a {
+  color: rgb(32, 32, 32);
+}

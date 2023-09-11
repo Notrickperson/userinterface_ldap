@@ -1,0 +1,61 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+    integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+<link rel="stylesheet" href="{{url_for('.static', filename='form.css')}}">
+{% endblock %}
+{% block content %}
+<div class="wrapper">
+    <div class="sidebar">
+        <img src="/static/images/icon.png" alt="Avatar"></img>
+        <h1>Bold Ventures</h1>
+        <h2>Ldap Usermanagement</h2>
+
+        <ul>
+            <!-- <li><a href="/#"><i class="far fa-address-card"></i>Data</a></li>-->
+            <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+        </ul>
+
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <h3 class="sub-header">Modify SSH-Keys</h3>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <p class="text-center">Use the form to modify your SSH-Keys</p>
+
+                            {% if bind_error %}
+                            <div class="alert alert-danger" role="alert">
+                                <p>{{ bind_error }}</p>
+                            </div>
+                            {% endif %}
+                            <form method="POST" id="sshForm" action="/ssh">
+                                <label>Your current SSH-Keys</label>
+                                {% if ssh %}
+                                <textarea class="form-control" name="ssh" id="ssh" rows="3"> {{ ssh }} </textarea>
+                                {% endif %}
+                                </br>
+                                <input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg"
+                                    data-loading-text="Changing Password..." value="Change SSH-Key">
+                            </form>
+                            <a class="btn btn-secondary" href="/">Return</a>
+                        </div>
+                        <!--/col-sm-6-->
+                    </div>
+                    <!--/row-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

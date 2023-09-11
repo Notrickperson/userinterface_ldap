@@ -1,0 +1,169 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+
+<link rel="stylesheet" href="{{url_for('.static', filename='home.css')}}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+  integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson }};
+</script>
+<script type="text/javascript">
+  window.setTimeout(function () {
+    $('#flash').delay(2000).fadeOut(300);
+  }, 4400);
+
+
+  $(window).on('load', function () {
+    $('#TelephoneNumber').click(function () {
+      console.log("ok :)")
+      var newnumber = $('#TelephoneNumber').text();
+      console.log(newnumber)
+      $(this).html('');
+      $('<input></input>')
+        .attr({
+          'type': 'text',
+          'name': 'fname',
+          'id': 'txt_telephoneNumber',
+          'size': '20',
+          'value': newnumber
+        })
+        .appendTo('#TelephoneNumber');
+      $('#txt_telephoneNumber').focus();
+    });
+
+    $(document).on('blur', '#txt_telephoneNumber', function () {
+      var newnumber = $(this).val();
+      console.log("hi", varnewnumber)
+      $.ajax({
+        url: '/',
+        data: JSON.stringify({ "newnumber": newnumber }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: "POST",
+        success: function () {
+          console.log(response);
+          $('#TelephoneNumber').text(newnumber);
+          $('#TelephoneNumber').last().html(str);
+        },
+      });
+      $('#TelephoneNumber').text(newnumber);
+      $('#TelephoneNumber').last().html(str);
+    });
+
+  });
+
+  //title change
+  $(window).on('load', function () {
+    $('#Position').click(function () {
+      var newposition = $(this).text();
+      $(this).html('');
+      $('<input></input>')
+        .attr({
+          'type': 'text',
+          'name': 'fname',
+          'id': 'txt_position',
+          'size': '20',
+          'value': newposition
+        })
+        .appendTo('#Position');
+      $('#txt_position').focus();
+    });
+
+    $(document).on('blur', '#txt_position', function () {
+      var newposition = $(this).val();
+      $.ajax({
+        url: '/',
+        data: JSON.stringify({ "newposition": newposition }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: "POST",
+        success: function () {
+          console.log(response);
+          $('#Position').text(newposition);
+          $('#Position').last().html(str);
+        },
+      });
+      $('#Position').text(newposition);
+      $('#Position').last().html(str);
+    });
+
+  });
+
+
+
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+  <div class="sidebar">
+    <img src="/static/images/icon.png" alt="Avatar"></img>
+    <h1>Bold Ventures</h1>
+    <h2>Ldap Usermanagement</h2>
+
+    {%if data%}
+    <label id="hello">Welcome {{ data.Name | replace("[", '') | replace("]", '') | replace("'", '') }}</label>
+    {% endif %}
+    <ul>
+      <!-- <li><a href="/#"><i class="far fa-address-card"></i>Data</a></li>-->
+      <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+    </ul>
+
+  </div>
+
+  <div class="container">
+
+    <!--Part to show flash messages after edits-->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div id="flash" class="align-self-start" role="alert">
+      {% for message in messages %}
+      <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+
+    <div class="content">
+
+      <h3 class="sub-header">Your Data</h3>
+
+      <form method="POST" id="dataForm" action="/">
+        {% for key,value in data.items() %} </br>
+        <p>{{key}}</p>
+
+
+        {% if key == 'Position' or key == 'TelephoneNumber' %}
+        {% if key == 'empty'%}
+        <input type="text" id="{{key}}" name="{{key}}" value=""></input></br>
+        {% else %}
+        <input type="text" id="{{key}}" name="{{key}}" value="{{value}}"></input></br>
+        {% endif %}
+        {% else %}
+        <input type="text" id="{{key}}" name="{{key}}" value="{{value}}" readonly></input></br>
+        {% endif %}
+        {% endfor %}
+        </br>
+        <input type="submit" class="btn btn-primary btn-sm" data-loading-text="Changing Password..."
+          value="Update Data">
+        </br></br>
+
+      </form>
+      <div id="actions">
+        <a class="btn btn-primary btn-sm" href="{{ url_for('password') }}">Change Password </a>
+        <a class="btn btn-primary btn-sm" href="{{ url_for('ssh') }}">Modify SSH-Keys </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

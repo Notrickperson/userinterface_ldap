@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Baloo Chettan 2", cursive;
+}
+
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-image: url("./images/bv.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#button {
+  margin-top: 3px;
+}
+
+#companyname {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.753);
+  border-radius: 25px;
+  border-top-right-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.753);
+  -webkit-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.753);
+  -moz-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.753);
+  color: white;
+  margin-top: 80px;
+}
+
+.form-signin-heading {
+  margin-top: 20px;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  border-radius: 7px;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 20px;
+  margin-top: 10px;
+  border-radius: 7px;
+}
